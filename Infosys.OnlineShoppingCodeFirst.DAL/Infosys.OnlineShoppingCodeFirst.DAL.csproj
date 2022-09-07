@@ -11,6 +11,16 @@
     <Compile Remove="Migrations\20220907061019_CreateTableProduct.Designer.cs" />
     <Compile Remove="Migrations\20220907070912_AddProductFK.cs" />
     <Compile Remove="Migrations\20220907070912_AddProductFK.Designer.cs" />
+    <Compile Remove="Migrations\20220907084201_CreateMovieAndGenre.cs" />
+    <Compile Remove="Migrations\20220907084201_CreateMovieAndGenre.Designer.cs" />
+    <Compile Remove="Migrations\20220907093603_AlterProductTable.cs" />
+    <Compile Remove="Migrations\20220907093603_AlterProductTable.Designer.cs" />
+    <Compile Remove="Migrations\20220907105232_test.cs" />
+    <Compile Remove="Migrations\20220907105232_test.Designer.cs" />
+    <Compile Remove="Migrations\20220907105321_InsertIntoCustomer.cs" />
+    <Compile Remove="Migrations\20220907105321_InsertIntoCustomer.Designer.cs" />
+    <Compile Remove="Migrations\20220907105355_InsertIntoCustomer.cs" />
+    <Compile Remove="Migrations\20220907105355_InsertIntoCustomer.Designer.cs" />
   </ItemGroup>
 
   <ItemGroup>

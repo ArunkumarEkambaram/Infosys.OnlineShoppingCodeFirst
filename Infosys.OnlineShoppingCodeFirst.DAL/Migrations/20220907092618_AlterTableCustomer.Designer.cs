@@ -4,75 +4,22 @@ using Infosys.OnlineShoppingCodeFirst.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Infosys.OnlineShoppingCodeFirst.DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220907092618_AlterTableCustomer")]
+    partial class AlterTableCustomer
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
                 .HasAnnotation("ProductVersion", "3.1.28")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.Category", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("CategoryName")
-                        .IsRequired()
-                        .HasColumnType("varchar(50)");
-
-                    b.HasKey("Id");
-
-                    b.HasAlternateKey("CategoryName")
-                        .HasName("unq_CategoryName");
-
-                    b.ToTable("Categories");
-                });
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.City", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("CityInformationId")
-                        .HasColumnType("int");
-
-                    b.Property<string>("CityName")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CityInformationId")
-                        .IsUnique();
-
-                    b.ToTable("City");
-                });
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.CityInformation", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<double>("Population")
-                        .HasColumnType("float");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("CityInformation");
-                });
 
             modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.Customer", b =>
                 {
@@ -120,12 +67,7 @@ namespace Infosys.OnlineShoppingCodeFirst.DAL.Migrations
                     b.Property<string>("GenreName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("MovieId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("MovieId");
 
                     b.ToTable("Genres");
                 });
@@ -206,11 +148,8 @@ namespace Infosys.OnlineShoppingCodeFirst.DAL.Migrations
                     b.Property<DateTime>("AddedDate")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("CategoryId")
-                        .HasColumnType("int");
-
                     b.Property<string>("Description")
-                        .HasColumnType("varchar(250)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime?>("ModifiedDate")
                         .HasColumnType("datetime2");
@@ -219,34 +158,14 @@ namespace Infosys.OnlineShoppingCodeFirst.DAL.Migrations
                         .HasColumnType("decimal(18,2)");
 
                     b.Property<string>("ProductName")
-                        .IsRequired()
-                        .HasColumnType("varchar(100)");
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("Quantity")
                         .HasColumnType("int");
 
                     b.HasKey("ProductId");
 
-                    b.HasIndex("CategoryId")
-                        .IsUnique();
-
                     b.ToTable("Products");
-                });
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.City", b =>
-                {
-                    b.HasOne("Infosys.OnlineShoppingCodeFirst.DAL.Models.CityInformation", "CityInformation")
-                        .WithOne("City")
-                        .HasForeignKey("Infosys.OnlineShoppingCodeFirst.DAL.Models.City", "CityInformationId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.Genre", b =>
-                {
-                    b.HasOne("Infosys.OnlineShoppingCodeFirst.DAL.Models.Movie", "Movie")
-                        .WithMany("Genres")
-                        .HasForeignKey("MovieId");
                 });
 
             modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.Movie", b =>
@@ -269,15 +188,6 @@ namespace Infosys.OnlineShoppingCodeFirst.DAL.Migrations
                     b.HasOne("Infosys.OnlineShoppingCodeFirst.DAL.Models.Product", "Product")
                         .WithMany()
                         .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Infosys.OnlineShoppingCodeFirst.DAL.Models.Product", b =>
-                {
-                    b.HasOne("Infosys.OnlineShoppingCodeFirst.DAL.Models.Category", "Category")
-                        .WithOne("Product")
-                        .HasForeignKey("Infosys.OnlineShoppingCodeFirst.DAL.Models.Product", "CategoryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

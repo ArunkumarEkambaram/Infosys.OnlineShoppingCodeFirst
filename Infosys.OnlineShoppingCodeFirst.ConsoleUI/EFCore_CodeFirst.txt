@@ -39,7 +39,6 @@ remove-migration
 
 after add-migration created and verified 
 run the below command to apply changes to Database
-
 update-database
 
 Create the following table
