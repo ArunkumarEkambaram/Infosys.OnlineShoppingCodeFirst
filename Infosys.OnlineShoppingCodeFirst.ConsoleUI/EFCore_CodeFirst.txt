@@ -1,0 +1,67 @@
+﻿Data First
+Use existing DB and convert to class and property
+
+Code First
+Create Class and property then convert to DB
+
+--Following steps for Code First approach--
+
+Solution Name : Infosys.OnlineShoppingCodeFirst
+Class Library : Infosys.OnlineShoppingCodeFirst.DAL
+Console App   : Infosys.OnlineShoppingCodeFirst.ConsoleUI
+
+Install the below packages in DAL Project
+Note : Make sure DAL is set to startup project
+
+Install-Package Microsoft.EntityFrameworkCore -version 3.1.28
+Install-Package Microsoft.EntityFrameworkCore.SqlServer -version 3.1.28
+Install-Package Microsoft.EntityFrameworkCore.Tools -version 3.1.28
+
+Create a folder in DAL name it : Models
+Create relevant classes
+
+Primary Key Column must named as TableNameId or Id
+
+Before converting Class to Table,
+First We have to create ApplicationDbContext file (Connection Information, Mapping of Class to Tables)
+DBSet<>
+
+After Configuring the ApplicationDbContext
+
+Run the following in PMC
+
+Creating the Table for the first time or changes made the table then run the below commands
+
+add-migration <migrationName> //(use meaningful name) will create POCO(Plain Old Clr Object) code
+
+command to remove previous migration
+remove-migration
+
+after add-migration created and verified 
+run the below command to apply changes to Database
+
+update-database
+
+Create the following table
+Order - Table
+OrderId - PK
+OrderDate
+OrderedQuantity
+ExpectedDeliveryDate
+ActualDeliveryDate
+
+--Exercise
+Movie - Table
+Id
+MovieName
+ReleaseDate
+Actors
+Budget
+AddedDate
+//FK
+Genre Table
+
+Genre
+Id - PK
+GenreName
+
